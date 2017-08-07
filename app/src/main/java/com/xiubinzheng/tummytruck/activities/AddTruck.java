@@ -19,6 +19,7 @@ public class AddTruck extends AppCompatActivity {
     private EditText avgCost;
     private EditText latitude;
     private EditText longitude;
+    private EditText zipcode;
 
     private Button addBtn;
     private Button cancelBtn;
@@ -35,6 +36,7 @@ public class AddTruck extends AppCompatActivity {
         avgCost = (EditText) findViewById(R.id.new_avg_cost);
         latitude = (EditText) findViewById(R.id.new_latitude);
         longitude = (EditText) findViewById(R.id.new_long);
+        zipcode = (EditText) findViewById(R.id.new_zip);
 
         addBtn = (Button) findViewById(R.id.add_truck);
         cancelBtn = (Button) findViewById(R.id.cancel_truck);
@@ -51,17 +53,16 @@ public class AddTruck extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 final String name = truckName.getText().toString();
                 final String type = foodType.getText().toString();
                 final Double cost = Double.parseDouble(avgCost.getText().toString());
                 final Double lat = Double.parseDouble(latitude.getText().toString());
                 final Double longi = Double.parseDouble(longitude.getText().toString());
-
-                DataService.getInstance().addTruck(name, type, cost, lat, longi, getBaseContext(), listener, authToken);
-
+                final int zip = Integer.parseInt(zipcode.getText().toString());
+                DataService.getInstance().addTruck(name, type, cost, lat, longi,zip, getBaseContext(), listener, authToken);
             }
-        });
+        }
+        );
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,9 +75,4 @@ public class AddTruck extends AppCompatActivity {
     public interface AddTruckInterface {
         void success(Boolean success);
     }
-
-
-
-
-
 }

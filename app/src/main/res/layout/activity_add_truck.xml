@@ -91,6 +91,22 @@
         android:layout_marginRight="16dp"
         android:hint="Longitude Decimal Degrees" />
 
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/new_zip"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/new_long"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        android:hint="Zipcode" />
+
     <Button
         android:text="Add Truck"
         android:layout_width="wrap_content"
@@ -100,7 +116,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/new_long" />
+        app:layout_constraintTop_toBottomOf="@+id/new_zip" />
 
     <Button
         android:text="Cancel"
@@ -111,5 +127,5 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/new_long" />
+        app:layout_constraintTop_toBottomOf="@+id/new_zip" />
 </android.support.constraint.ConstraintLayout>

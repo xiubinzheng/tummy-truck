@@ -7,12 +7,23 @@ import android.os.Parcelable;
 
 public class FoodTruck implements Parcelable {
 
-    private String id = "";
-    private String name = "";
-    private String foodType = "";
-    private Double avgCost = 0.0;
-    private Double latitude = 0.0;
-    private Double longitude = 0.0;
+    private String id ;
+    private String name ;
+    private String foodType ;
+    private Double avgCost ;
+    private Double latitude ;
+    private Double longitude ;
+    private Double zipcode ;
+
+    public Double getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(Double zipcode) {
+        this.zipcode = zipcode;
+    }
+
+
 
     public String getId() {
         return id;
@@ -38,13 +49,14 @@ public class FoodTruck implements Parcelable {
         return longitude;
     }
 
-    public FoodTruck(String id, String name, String foodType, Double avgCost, Double latitude, Double longitude) {
+    public FoodTruck(String id, String name, String foodType, Double avgCost, Double latitude, Double longitude, Double zipcode) {
         this.id = id;
         this.name = name;
         this.foodType = foodType;
         this.avgCost = avgCost;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.zipcode = zipcode;
     }
 
     // Make parcel

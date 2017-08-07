@@ -57,14 +57,14 @@ public class DataService {
                         String id = foodTruck.getString("_id");
                         String foodType = foodTruck.getString("foodtype");
                         Double avgCost = foodTruck.getDouble("avgcost");
-
+                        Double zipcode = foodTruck.getDouble("zip");
                         JSONObject geometry = foodTruck.getJSONObject("geometry");
                         JSONObject coordinates = geometry.getJSONObject("coordinates");
 
                         Double latitude = coordinates.getDouble("lat");
                         Double longitude = coordinates.getDouble("long");
 
-                        FoodTruck newFoodTruck = new FoodTruck(id, name, foodType, avgCost, latitude, longitude);
+                        FoodTruck newFoodTruck = new FoodTruck(id, name, foodType, avgCost, latitude, longitude,zipcode);
                         foodTruckList.add(newFoodTruck);
 
                     }
@@ -198,7 +198,9 @@ public class DataService {
     }
 
     // Add Truck Post
-    public void addTruck(String name, String foodType, Double avgCost, Double latitude, Double longitude, Context context, final AddTruck.AddTruckInterface listener, String authToken) {
+    public void addTruck(String name, String foodType, Double avgCost,
+                         Double latitude, Double longitude, int zipcode, Context context,
+                         final AddTruck.AddTruckInterface listener, String authToken) {
 
         try {
 
@@ -208,6 +210,7 @@ public class DataService {
             JSONObject coordinates = new JSONObject();
             coordinates.put("lat", latitude);
             coordinates.put("long", longitude);
+
             geometry.put("coordinates", coordinates);
 
             JSONObject jsonBody = new JSONObject();
@@ -215,6 +218,8 @@ public class DataService {
             jsonBody.put("foodtype", foodType);
             jsonBody.put("avgcost", avgCost);
             jsonBody.put("geometry", geometry);
+            jsonBody.put("zip", zipcode);
+            Log.i("jsonBody: ",jsonBody.toString());
 
             final String mRequestBody = jsonBody.toString();
             final String bearer = "Bearer " + authToken;
@@ -268,6 +273,7 @@ public class DataService {
                 }
             };
 
+            Log.i("addTruck.toString(): ",addTruck.toString());
             Volley.newRequestQueue(context).add(addTruck);
         } catch (JSONException e){
             e.printStackTrace();
